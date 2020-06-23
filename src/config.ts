@@ -5,6 +5,7 @@ interface IConfig {
     accessToken: string;
     autoJoin: boolean;
     dataPath: string;
+    pollbot: string;
 }
 
 export default <IConfig>config;

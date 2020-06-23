@@ -9,6 +9,7 @@ import {
 import * as path from "path";
 import config from "./config";
 import CommandHandler from "./commands/handler";
+import web from "./web";
 
 // First things first: let's make the logs a bit prettier.
 LogService.setLogger(new RichConsoleLogger());
@@ -92,4 +93,5 @@ async function getEvent(roomId, eventId) {
     await commands.start();
     LogService.info("index", "Starting sync...");
     await client.start(); // This blocks until the bot is killed
+    web(handledEvents);
 })();

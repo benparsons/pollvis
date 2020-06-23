@@ -1,0 +1,9 @@
+html
+  head
+    title= title
+  body
+    pre=dataString
+    ul
+      each val, key in data
+        li
+          a(href="/"+key)=val.question

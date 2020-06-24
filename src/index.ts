@@ -81,7 +81,7 @@ let interval = setInterval(async function() {
         //[ '\t🌊: option 2', '❤: ️ option 1', '' ]
 
     })
-}, 2000);
+}, 10000);
 
 async function getEvent(roomId, eventId) {
     var event = await client.getEvent(roomId, eventId);

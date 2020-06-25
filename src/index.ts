@@ -93,5 +93,16 @@ async function getEvent(roomId, eventId) {
     await commands.start();
     LogService.info("index", "Starting sync...");
     await client.start(); // This blocks until the bot is killed
+    let rooms = await client.getJoinedRooms();
+    console.log(rooms);
+    let qs = {from: client.storageProvider.getSyncToken, dir: "b", limit: 100};
+    rooms.forEach(async function(roomId) {
+        let res = await client.doRequest("GET", `_matrix/client/r0/rooms/${roomId}/messages`, qs);
+        res.chunk.forEach(event => {
+            if (event.sender === config.pollbot && event.type === "m.room.message") {
+                handledEvents[event.event_id] = {roomId: roomId};
+            }
+        })
+    });
     web(handledEvents);
 })();

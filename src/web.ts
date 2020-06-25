@@ -16,7 +16,7 @@ function web(data) {
         res.render('chart',
             {
                 event_id: req.params.event_id,
-                dataString: JSON.stringify(data),
+                dataString: JSON.stringify(data, null, 2),
                 data: data
             })
     });
